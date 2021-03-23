@@ -27,6 +27,7 @@ public class Level_05_Login_Multiple_Browser extends BaseTest {
 	@Parameters("url")
 	@BeforeMethod
 	public void beforeMothod(String appUrl) {
+		driver.get(appUrl);
 		loginPage = new LoginPageObject(driver);
 
 	}

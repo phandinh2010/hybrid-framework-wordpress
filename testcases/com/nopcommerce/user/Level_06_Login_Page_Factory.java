@@ -1,52 +1,49 @@
 package com.nopcommerce.user;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import pageObject.nopCommerce.HomePageObject;
-import pageObject.nopCommerce.LoginPageObject;
-import pageObject.nopCommerce.RegisterPageObject;
+import commons.BaseTest;
+import pageFactory.nopCommerce.HomePageObject;
+import pageFactory.nopCommerce.LoginPageObject;
+import pageFactory.nopCommerce.RegisterPageObject;
 
-public class Level_04_Login_Page_Object {
+
+public class Level_06_Login_Page_Factory extends BaseTest {
 	WebDriver driver;
 	String emailAddress;
 	String projectLocation = System.getProperty("user.dir");
 	HomePageObject homePage;
 	LoginPageObject loginPage;
 	RegisterPageObject registerPage;
-	
 
+	@Parameters({"browser", "url"})
 	@BeforeClass
-	public void beforeClass() {
-		System.setProperty("webdriver.gecko.driver", projectLocation + "\\browserDriver\\geckodriver.exe");
-		driver = new FirefoxDriver();
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);		
-		driver.get("https://demo.nopcommerce.com");
-		
+	public void beforeClass(String browserName, String urlValue) {
+		driver = getBrowserDriver(browserName, urlValue);
 		emailAddress = "testing" + getRandomNumber() + "@gmail.com";
-		
-		homePage= new HomePageObject(driver);
+		homePage = new HomePageObject(driver);
 	}
-	
+
 	@Test
 	public void User_01_Register_To_System() {
 		homePage.clickToRegisterLink();
-		
+
 		registerPage = new RegisterPageObject(driver);
 		registerPage.enterToFirstNameTextbox("test");
+		sleepInSecond(5);
 		registerPage.enterToLastNameTextbox("automation");
 		registerPage.enterToEmailTextbox(emailAddress);
 		registerPage.enterToPasswordTextbox("123456");
 		registerPage.enterToConfirmPasswordTextbox("123456");
 		registerPage.clickToRegisterBtn();
-			
+
 		Assert.assertTrue(registerPage.isSuccessMsgDisplay());
 		registerPage.clickToLogoutLink();
 		homePage = new HomePageObject(driver);
@@ -55,14 +52,14 @@ public class Level_04_Login_Page_Object {
 	@Test
 	public void User_02_Login_To_System() {
 		homePage.clickToLoginLink();
-		
+
 		loginPage = new LoginPageObject(driver);
 		loginPage.enterToEmailTextbox(emailAddress);
 		loginPage.enterToPasswordTextbox("123456");
 		loginPage.clickToLoginBtn();
-		
+
 		homePage = new HomePageObject(driver);
-		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());		
+		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 	}
 
 	@AfterClass

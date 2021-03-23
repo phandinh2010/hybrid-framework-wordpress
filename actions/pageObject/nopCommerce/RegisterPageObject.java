@@ -43,7 +43,7 @@ WebDriver driver;
 		
 	}
 
-	public boolean isSuccessMsgDisplay(String string) {
+	public boolean isSuccessMsgDisplay() {
 		waitForElementVisiable(driver, RegisterPageUI.REGISTER_SUCCESS_MSG);
 		return isElementDisplayed(driver, RegisterPageUI.REGISTER_SUCCESS_MSG);
 	}
