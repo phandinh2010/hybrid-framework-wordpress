@@ -7,13 +7,15 @@ import pageUIs.nopCommerce.LoginPageUI;
 
 public class LoginPageObject extends BasePage {
 WebDriver driver;
+//PageGeneratorManager pageGenerator;
 	
 	public LoginPageObject (WebDriver driver) {
 		this.driver = driver;
+		//pageGenerator = new PageGeneratorManager();
 	}
 
 	public void enterToEmailTextbox(String emailAddress) {
-		waitForElementVisiable(driver, LoginPageUI.EMAIL_TEXTBOX);
+		waitForElementVisible(driver, LoginPageUI.EMAIL_TEXTBOX);
 		sendkeyToElement(driver, LoginPageUI.EMAIL_TEXTBOX, emailAddress);	
 		
 	}
@@ -24,9 +26,9 @@ WebDriver driver;
 		
 	}
 
-	public void clickToLoginBtn() {
-		waitForElementVisiable(driver, LoginPageUI.LOGIN_BUTTON);
+	public HomePageObject clickToLoginBtn() {
+		waitForElementVisible(driver, LoginPageUI.LOGIN_BUTTON);
 		clickToElement(driver, LoginPageUI.LOGIN_BUTTON);	
-		
+		return PageGeneratorManager.getHomePage(driver);
 	}
 }

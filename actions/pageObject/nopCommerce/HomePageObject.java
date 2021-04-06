@@ -7,25 +7,35 @@ import pageUIs.nopCommerce.HomePageUI;
 
 public class HomePageObject extends BasePage {
 	WebDriver driver;
-	
+	//PageGeneratorManager pageGenerator;
 	public HomePageObject (WebDriver driver) {
 		this.driver = driver;
+		//pageGenerator = new PageGeneratorManager();
 	}
 
-	public void clickToRegisterLink() {
-		waitForElementVisiable(driver, HomePageUI.REGISTER_LINK);
-		clickToElement(driver, HomePageUI.REGISTER_LINK);		
+	public RegisterPageObject clickToRegisterLink() {
+		waitForElementVisible(driver, HomePageUI.REGISTER_LINK);
+		clickToElement(driver, HomePageUI.REGISTER_LINK);	
+		return PageGeneratorManager.getRegisterPage(driver);
 	}
 
-	public void clickToLoginLink() {
-		waitForElementVisiable(driver, HomePageUI.LOGIN_LINK);
+	public LoginPageObject clickToLoginLink() {
+		waitForElementVisible(driver, HomePageUI.LOGIN_LINK);
 		clickToElement(driver, HomePageUI.LOGIN_LINK);	
+		return PageGeneratorManager.getLoginPage(driver);
 		
 	}
 
 	public boolean isMyAccountLinkDisplayed() {
-		waitForElementVisiable(driver, HomePageUI.MY_ACCOUNT_LINK);
+		waitForElementVisible(driver, HomePageUI.MY_ACCOUNT_LINK);
 		return isElementDisplayed(driver, HomePageUI.MY_ACCOUNT_LINK);
+	}
+
+	public CustomerInforPageObject clickToMyAccountLink() {
+		waitForElementClickable(driver, HomePageUI.MY_ACCOUNT_LINK);
+		clickToElement(driver, HomePageUI.MY_ACCOUNT_LINK);	
+		return PageGeneratorManager.getCustomerInforPage(driver);
+		
 	}
 
 }

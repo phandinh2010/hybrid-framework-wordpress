@@ -7,33 +7,35 @@ import pageUIs.nopCommerce.RegisterPageUI;
 
 public class RegisterPageObject extends BasePage {
 WebDriver driver;
-	
+//PageGeneratorManager pageGenerator;
+
 	public RegisterPageObject (WebDriver driver) {
 		this.driver = driver;
+		//pageGenerator = new PageGeneratorManager();
 	}
 
 	public void enterToFirstNameTextbox(String firstName) {
-		waitForElementVisiable(driver, RegisterPageUI.FIRST_NAME_TEXTBOX);
+		waitForElementVisible(driver, RegisterPageUI.FIRST_NAME_TEXTBOX);
 		sendkeyToElement(driver, RegisterPageUI.FIRST_NAME_TEXTBOX, firstName);
 	}
 
 	public void enterToLastNameTextbox(String lastName) {
-		waitForElementVisiable(driver, RegisterPageUI.LAST_NAME_TEXTBOX);
+		waitForElementVisible(driver, RegisterPageUI.LAST_NAME_TEXTBOX);
 		sendkeyToElement(driver, RegisterPageUI.LAST_NAME_TEXTBOX, lastName);
 	}
 
 	public void enterToEmailTextbox(String emailAddress) {
-		waitForElementVisiable(driver, RegisterPageUI.EMAIL_TEXTBOX);
+		waitForElementVisible(driver, RegisterPageUI.EMAIL_TEXTBOX);
 		sendkeyToElement(driver, RegisterPageUI.EMAIL_TEXTBOX, emailAddress);
 	}
 
 	public void enterToPasswordTextbox(String password) {
-		waitForElementVisiable(driver, RegisterPageUI.PASSWORD_TEXTBOX);
+		waitForElementVisible(driver, RegisterPageUI.PASSWORD_TEXTBOX);
 		sendkeyToElement(driver, RegisterPageUI.PASSWORD_TEXTBOX, password);
 	}
 
 	public void enterToConfirmPasswordTextbox(String confirmPassword) {
-		waitForElementVisiable(driver, RegisterPageUI.CONFIRM_PASSWORD_TEXTBOX);
+		waitForElementVisible(driver, RegisterPageUI.CONFIRM_PASSWORD_TEXTBOX);
 		sendkeyToElement(driver, RegisterPageUI.CONFIRM_PASSWORD_TEXTBOX, confirmPassword);
 	}
 
@@ -44,12 +46,13 @@ WebDriver driver;
 	}
 
 	public boolean isSuccessMsgDisplay() {
-		waitForElementVisiable(driver, RegisterPageUI.REGISTER_SUCCESS_MSG);
+		waitForElementVisible(driver, RegisterPageUI.REGISTER_SUCCESS_MSG);
 		return isElementDisplayed(driver, RegisterPageUI.REGISTER_SUCCESS_MSG);
 	}
 
-	public void clickToLogoutLink() {
+	public HomePageObject clickToLogoutLink() {
 		waitForElementClickable(driver, RegisterPageUI.LOGOUT_LINK);
 		clickToElement(driver, RegisterPageUI.LOGOUT_LINK);
+		return PageGeneratorManager.getHomePage(driver);
 	}
 }

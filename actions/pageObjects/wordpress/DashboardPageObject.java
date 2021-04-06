@@ -13,7 +13,7 @@ public class DashboardPageObject extends BasePage{
 		this.driver = driver;
 	}
 	public boolean isDashboardHeaderTextDisplayed() {
-		waitForElementVisiable(driver, DashboardPageUI.DASHBOARD_HEADER_TEXT);
+		waitForElementVisible(driver, DashboardPageUI.DASHBOARD_HEADER_TEXT);
 		return isElementDisplayed(driver, DashboardPageUI.DASHBOARD_HEADER_TEXT);
 	}
 

@@ -23,7 +23,7 @@ public class LoginPageObject extends BasePage {
 
 
 	public void inputToUsernameTextbox(String usernameOrEmail) {
-		waitForElementVisiable(driver, LoginPageUI.USERNAME_EMAIL_TEXTBOX);
+		waitForElementVisible(driver, LoginPageUI.USERNAME_EMAIL_TEXTBOX);
 		sendkeyToElement(driver, LoginPageUI.USERNAME_EMAIL_TEXTBOX, usernameOrEmail);		
 	}
 	
@@ -35,17 +35,17 @@ public class LoginPageObject extends BasePage {
 	}
 
 	public boolean isEmptyEmailErrorMsgDisplayed() {
-		waitForElementVisiable(driver, LoginPageUI.EMPTY_EMAIL_ERROR_MSG);
+		waitForElementVisible(driver, LoginPageUI.EMPTY_EMAIL_ERROR_MSG);
 		return isElementDisplayed(driver, LoginPageUI.EMPTY_EMAIL_ERROR_MSG);
 	}
 
 	public String getInvalidEmailErrorMsg() {
-		waitForElementVisiable(driver, LoginPageUI.INVALID_EMAIL_ERROR_MSG);
+		waitForElementVisible(driver, LoginPageUI.INVALID_EMAIL_ERROR_MSG);
 		return getElementText(driver, LoginPageUI.INVALID_EMAIL_ERROR_MSG);
 	}
 
 	public void inputToPasswordBtn(String password) {
-		waitForElementVisiable(driver, LoginPageUI.PASSWORD_TEXTBOX);
+		waitForElementVisible(driver, LoginPageUI.PASSWORD_TEXTBOX);
 		sendkeyToElement(driver, LoginPageUI.PASSWORD_TEXTBOX, password);
 		
 	}
@@ -57,13 +57,13 @@ public class LoginPageObject extends BasePage {
 	}
 
 	public boolean isEmptyPasswordErrorMsgDisplayed() {
-		waitForElementVisiable(driver, LoginPageUI.EMPTY_PASSWORD_ERROR_MSG);
+		waitForElementVisible(driver, LoginPageUI.EMPTY_PASSWORD_ERROR_MSG);
 		return isElementDisplayed(driver, LoginPageUI.EMPTY_PASSWORD_ERROR_MSG);
 	}
 
 	public boolean isInvalidPasswordErrorMsgDisplayed() {
 		
-		waitForElementVisiable(driver, LoginPageUI.INVALID_PASSWORD_ERROR_MSG);
+		waitForElementVisible(driver, LoginPageUI.INVALID_PASSWORD_ERROR_MSG);
 		return isElementDisplayed(driver, LoginPageUI.INVALID_PASSWORD_ERROR_MSG);
 	}
 }
