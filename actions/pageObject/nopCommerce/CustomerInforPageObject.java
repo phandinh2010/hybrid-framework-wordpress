@@ -29,4 +29,12 @@ public class CustomerInforPageObject extends BasePage {
 		return getElementAttributeValue(driver, CustomerInforPageUI.EMAIL_TEXTBOX);
 	}
 
+
+	public SiteMapPageObject openSiteMapPage() {
+	waitForElementClickable(driver, CustomerInforPageUI.SITE_MAP_LINK);
+	clickToElement(driver, CustomerInforPageUI.SITE_MAP_LINK);
+		return PageGeneratorManager.getSiteMapPage(driver);
+	}
+	
+
 }

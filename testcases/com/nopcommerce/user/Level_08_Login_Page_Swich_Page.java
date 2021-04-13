@@ -10,23 +10,21 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
+import pageObject.nopCommerce.AboutUsPageObject;
 import pageObject.nopCommerce.CustomerInforPageObject;
 import pageObject.nopCommerce.HomePageObject;
 import pageObject.nopCommerce.LoginPageObject;
+import pageObject.nopCommerce.NewsPageObject;
 import pageObject.nopCommerce.PageGeneratorManager;
 import pageObject.nopCommerce.RegisterPageObject;
+import pageObject.nopCommerce.ShoppingCartPageObject;
+import pageObject.nopCommerce.SiteMapPageObject;
 
-public class Level_07_Login_Page_Swich_Page extends BaseTest {
+public class Level_08_Login_Page_Swich_Page extends BaseTest {
 	WebDriver driver;
 	String emailAddress;
 	String projectLocation = System.getProperty("user.dir");
-	HomePageObject homePage;
-	LoginPageObject loginPage;
-	RegisterPageObject registerPage;
-	CustomerInforPageObject cutomerInfoPage;
-	//PageGeneratorManager pageGenerator;
 	
-
 	@Parameters({"browser", "url"})
 	@BeforeClass
 	public void beforeClass(String browserName, String urlValue) {
@@ -73,6 +71,15 @@ public class Level_07_Login_Page_Swich_Page extends BaseTest {
 		
 	}
 	
+	@Test
+	public void User_04_Switch_Page_Object() {
+		siteMapPage = cutomerInfoPage.openSiteMapPage();
+		newsPage = siteMapPage.openNewsPage();
+		shoppingCartPage = newsPage.openShoppingCartPage();
+		aboutUsPage = shoppingCartPage.openAboutUsPage();
+		homePage = aboutUsPage.openHomePage();
+	}
+	
 	
 	@AfterClass
 	public void afterClass() {
@@ -83,5 +90,13 @@ public class Level_07_Login_Page_Swich_Page extends BaseTest {
 		Random rand = new Random();
 		return rand.nextInt(99999);
 	}
-
+	
+	NewsPageObject newsPage;
+	HomePageObject homePage;
+	LoginPageObject loginPage;
+	SiteMapPageObject siteMapPage;
+	AboutUsPageObject aboutUsPage;
+	RegisterPageObject registerPage;
+	CustomerInforPageObject cutomerInfoPage;
+	ShoppingCartPageObject shoppingCartPage;
 }

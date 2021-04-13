@@ -80,8 +80,16 @@ public class BasePage {
 		return driver.findElements(getByXpath(locator));
 	}
 
+	public String getDynamicLocator(String locator, String...values) {
+		return String.format(locator, (Object[]) values);
+	}
+		
+	
 	public void clickToElement(WebDriver driver, String locator) {
 		getWebElement(driver, locator).click();
+	}
+	public void clickToElement(WebDriver driver, String locator, String...values) {
+		getWebElement(driver, getDynamicLocator(locator, values)).click();
 	}
 
 	private void clickToElement(WebElement element) {
@@ -90,6 +98,11 @@ public class BasePage {
 
 	public void sendkeyToElement(WebDriver driver, String locator, String value) {
 		WebElement element = getWebElement(driver, locator);
+		element.clear();
+		element.sendKeys(value);
+	}
+	public void sendkeyToElement(WebDriver driver, String locator, String value, String...values) {
+		WebElement element = getWebElement(driver, getDynamicLocator(locator, values));
 		element.clear();
 		element.sendKeys(value);
 	}
@@ -142,6 +155,9 @@ public class BasePage {
 	public String getElementText(WebDriver driver, String locator) {
 		return getWebElement(driver, locator).getText().trim();
 	}
+	public String getElementText(WebDriver driver, String locator, String...values) {
+		return getWebElement(driver, getDynamicLocator(locator, values)).getText().trim();
+	}
 
 	public String getElementAttributeByName(WebDriver driver, String locator, String attributeName) {
 		return getWebElement(driver, locator).getAttribute(attributeName);
@@ -170,6 +186,9 @@ public class BasePage {
 
 	public boolean isElementDisplayed(WebDriver driver, String locator) {
 		return getWebElement(driver, locator).isDisplayed();
+	}
+	public boolean isElementDisplayed(WebDriver driver, String locator, String...values) {
+		return getWebElement(driver, getDynamicLocator(locator, values)).isDisplayed();
 	}
 
 	public boolean isElementEnabled(WebDriver driver, String locator) {
@@ -247,6 +266,10 @@ public class BasePage {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].click();", getWebElement(driver, locator));
 	}
+	public void clickToElementByJS(WebDriver driver, String locator, String... values) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].click();", getWebElement(driver, getDynamicLocator(locator, values)));
+	}
 
 	public void scrollToElement(WebDriver driver, String locator) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -306,6 +329,11 @@ public class BasePage {
 	public void waitForElementVisible(WebDriver driver, String locator) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
+		
+	}
+	public void waitForElementVisible(WebDriver driver, String locator, String...values) {
+		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
+		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(getDynamicLocator(locator, values))));
 
 	}
 
@@ -324,6 +352,10 @@ public class BasePage {
 	public void waitForElementClickable(WebDriver driver, String locator) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
 		explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
+	}
+	public void waitForElementClickable(WebDriver driver, String locator, String... values) {
+		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
+		explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(getDynamicLocator(locator, values))));
 	}
 	
 	private long shortTimeout = 5;

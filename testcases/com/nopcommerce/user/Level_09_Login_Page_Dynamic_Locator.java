@@ -10,22 +10,22 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import pageObject.nopCommerce.AboutUsPageObject;
 import pageObject.nopCommerce.CustomerInforPageObject;
 import pageObject.nopCommerce.HomePageObject;
 import pageObject.nopCommerce.LoginPageObject;
-import pageObject.nopCommerce.NewsPageObject;
 import pageObject.nopCommerce.PageGeneratorManager;
 import pageObject.nopCommerce.RegisterPageObject;
-import pageObject.nopCommerce.ShoppingCartPageObject;
-import pageObject.nopCommerce.SiteMapPageObject;
 
-public class Level_07_Login_Page_Generator_Part3 extends BaseTest {
+public class Level_09_Login_Page_Dynamic_Locator extends BaseTest {
 	WebDriver driver;
 	String emailAddress;
 	String projectLocation = System.getProperty("user.dir");
+	HomePageObject homePage;
+	LoginPageObject loginPage;
+	RegisterPageObject registerPage;
+	CustomerInforPageObject cutomerInfoPage;
+	//PageGeneratorManager pageGenerator;
 	
-		
 
 	@Parameters({"browser", "url"})
 	@BeforeClass
@@ -73,6 +73,13 @@ public class Level_07_Login_Page_Generator_Part3 extends BaseTest {
 		
 	}
 	
+	@Test
+	public void User_04_Switch_Page_Object() {
+		siteMapPage = customerInfoPage.openSiteMappage(driver);
+		newspage = siteMapPage.openNewsPage(driver);
+		shoppingCartPage = newsPage.openShoppingCartPage(driver);
+	}
+	
 	
 	@AfterClass
 	public void afterClass() {
@@ -83,15 +90,5 @@ public class Level_07_Login_Page_Generator_Part3 extends BaseTest {
 		Random rand = new Random();
 		return rand.nextInt(99999);
 	}
-	
-	HomePageObject homePage;
-	LoginPageObject loginPage;
-	RegisterPageObject registerPage;
-	CustomerInforPageObject cutomerInfoPage;
-	AboutUsPageObject aboutUsPage;
-	NewsPageObject newsPage;
-	ShoppingCartPageObject shoppingCartPage;
-	SiteMapPageObject siteMapPage;
-	
 
 }

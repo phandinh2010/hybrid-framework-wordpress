@@ -12,7 +12,7 @@ public class Topic_04_Dynamic_Locator extends BasePage {
 	public static final String DYNAMIC_FOOTER_LINK="//a[text()='%s']";
 	
 	//3 - 1 locator có 2 tham số dynamic
-	public static final String DYNAMIC_LINK="//a[text()='%s']";
+	public static final String DYNAMIC_LINK="//div[@class='%s']//a[text()='%s']";
 	
 	// 4 - Có 3 tham số dynamic
 	
@@ -26,6 +26,10 @@ public class Topic_04_Dynamic_Locator extends BasePage {
 		clickToElement(DYNAMIC_LINK, "heard", "Login" );
 		
 		clickToElement(DYNAMIC_LINK, "footer", "About us" );
+		
+		
+		clickToElement(DYNAMIC_LINK, "18888", "Armenia", "18894", "3343" );
+		clickToElement(DYNAMIC_LINK, "23434", "Angola", "18894", "3343" );
 		
 	}
 		
