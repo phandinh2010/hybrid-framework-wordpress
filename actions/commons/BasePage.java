@@ -1,5 +1,7 @@
 package commons;
 
+import java.io.File;
+import java.nio.file.FileSystems;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -13,8 +15,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pageUIs.jQuery.HomePageUI;
+
 public class BasePage {
-	
+
 	public static BasePage getBasePage() {
 		return new BasePage();
 	}
@@ -80,15 +84,15 @@ public class BasePage {
 		return driver.findElements(getByXpath(locator));
 	}
 
-	public String getDynamicLocator(String locator, String...values) {
+	public String getDynamicLocator(String locator, String... values) {
 		return String.format(locator, (Object[]) values);
 	}
-		
-	
+
 	public void clickToElement(WebDriver driver, String locator) {
 		getWebElement(driver, locator).click();
 	}
-	public void clickToElement(WebDriver driver, String locator, String...values) {
+
+	public void clickToElement(WebDriver driver, String locator, String... values) {
 		getWebElement(driver, getDynamicLocator(locator, values)).click();
 	}
 
@@ -101,7 +105,8 @@ public class BasePage {
 		element.clear();
 		element.sendKeys(value);
 	}
-	public void sendkeyToElement(WebDriver driver, String locator, String value, String...values) {
+
+	public void sendkeyToElement(WebDriver driver, String locator, String value, String... values) {
 		WebElement element = getWebElement(driver, getDynamicLocator(locator, values));
 		element.clear();
 		element.sendKeys(value);
@@ -155,13 +160,15 @@ public class BasePage {
 	public String getElementText(WebDriver driver, String locator) {
 		return getWebElement(driver, locator).getText().trim();
 	}
-	public String getElementText(WebDriver driver, String locator, String...values) {
+
+	public String getElementText(WebDriver driver, String locator, String... values) {
 		return getWebElement(driver, getDynamicLocator(locator, values)).getText().trim();
 	}
 
 	public String getElementAttributeByName(WebDriver driver, String locator, String attributeName) {
 		return getWebElement(driver, locator).getAttribute(attributeName);
 	}
+
 	public String getElementAttributeValue(WebDriver driver, String locator) {
 		return getWebElement(driver, locator).getAttribute("value");
 	}
@@ -169,8 +176,8 @@ public class BasePage {
 	public int getElementNumber(WebDriver driver, String locator) {
 		return getListWebElement(driver, locator).size();
 	}
-	
-	public int getElementNumber(WebDriver driver, String locator, String...values) {
+
+	public int getElementNumber(WebDriver driver, String locator, String... values) {
 		return getListWebElement(driver, getDynamicLocator(locator, values)).size();
 	}
 
@@ -191,7 +198,8 @@ public class BasePage {
 	public boolean isElementDisplayed(WebDriver driver, String locator) {
 		return getWebElement(driver, locator).isDisplayed();
 	}
-	public boolean isElementDisplayed(WebDriver driver, String locator, String...values) {
+
+	public boolean isElementDisplayed(WebDriver driver, String locator, String... values) {
 		return getWebElement(driver, getDynamicLocator(locator, values)).isDisplayed();
 	}
 
@@ -230,7 +238,7 @@ public class BasePage {
 		Actions action = new Actions(driver);
 		action.sendKeys(getWebElement(driver, locator), key).perform();
 	}
-	
+
 	public void pressKeyToElement(WebDriver driver, String locator, Keys key, String... values) {
 		Actions action = new Actions(driver);
 		action.sendKeys(getWebElement(driver, getDynamicLocator(locator, values)), key).perform();
@@ -275,6 +283,7 @@ public class BasePage {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].click();", getWebElement(driver, locator));
 	}
+
 	public void clickToElementByJS(WebDriver driver, String locator, String... values) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].click();", getWebElement(driver, getDynamicLocator(locator, values)));
@@ -338,9 +347,10 @@ public class BasePage {
 	public void waitForElementVisible(WebDriver driver, String locator) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
-		
+
 	}
-	public void waitForElementVisible(WebDriver driver, String locator, String...values) {
+
+	public void waitForElementVisible(WebDriver driver, String locator, String... values) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(getDynamicLocator(locator, values))));
 
@@ -362,11 +372,27 @@ public class BasePage {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
 		explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
 	}
+
 	public void waitForElementClickable(WebDriver driver, String locator, String... values) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
 		explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(getDynamicLocator(locator, values))));
 	}
-	
+
+	public void uploadMultipleFiles(WebDriver driver, String... fileNames) {
+		String filePath = System.getProperty("user.dir") + getDirectorySlash("uploadFiles");
+		String fullFileName = "";
+		for (String file : fileNames) {
+			fullFileName = fullFileName + filePath + file + "\n";
+		}
+		fullFileName = fullFileName.trim();
+		sendkeyToElement(driver, HomePageUI.UPLOAD_FILE_TYPE, fullFileName);
+	}
+
+	public String getDirectorySlash(String folderName) {
+		String separator = System.getProperty("file.separator");
+		return separator + folderName + separator;
+	}
+
 	private long shortTimeout = 5;
 	private long longTimeout = 30;
 }
