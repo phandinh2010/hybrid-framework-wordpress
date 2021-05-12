@@ -41,7 +41,7 @@ public class BaseTest {
 			throw new RuntimeException("Please input the browser name!");
 		}
 		
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
 		return driver;
 	}
 	

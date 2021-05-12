@@ -17,4 +17,21 @@ public class DashboardPageObject extends BasePage{
 		return isElementDisplayed(driver, DashboardPageUI.DASHBOARD_HEADER_TEXT);
 	}
 
+	public void clickToScreenOptionButton() {
+		waitForElementClickable(driver, DashboardPageUI.SCREEN_OPTION_BUTTON);
+		clickToElement(driver, DashboardPageUI.SCREEN_OPTION_BUTTON);
+	}
+	public boolean isAcitvityCheckboxDisplayed() {
+		waitForElementVisible(driver, DashboardPageUI.ACTIVITY_CHECKBOX);
+		return isElementDisplayed(driver, DashboardPageUI.ACTIVITY_CHECKBOX);
+	}
+	
+	public boolean isAcitvityCheckboxUndisplayed() {
+		waitForElementInvisible(driver, DashboardPageUI.ACTIVITY_CHECKBOX);
+		return isElementDisplayed(driver, DashboardPageUI.ACTIVITY_CHECKBOX);
+	}
+	public boolean isPostSearchTextboxUndisplay() {
+		waitForElementInvisible(driver, DashboardPageUI.POST_SEARCH_TEXTBOX);
+		return isElementDisplayed(driver, DashboardPageUI.POST_SEARCH_TEXTBOX);
+	}
 }

@@ -3,6 +3,7 @@ package commons;
 import java.io.File;
 import java.nio.file.FileSystems;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -199,10 +200,60 @@ public class BasePage {
 		return getWebElement(driver, locator).isDisplayed();
 	}
 
+	public boolean isControlDisplayed(WebDriver driver, String locator) {
+		boolean status = false;
+		try {
+			status = getWebElement(driver, locator).isDisplayed();
+			return status;
+		} catch (Exception e) {
+			return status;
+		}
+	}
+
 	public boolean isElementDisplayed(WebDriver driver, String locator, String... values) {
 		return getWebElement(driver, getDynamicLocator(locator, values)).isDisplayed();
 	}
 
+	public boolean isElementUndisplayed(WebDriver driver, String locator) {
+		overideImpicitTimeout(driver, shortTimeout);
+		List<WebElement> elements = getListWebElement(driver, locator);
+		overideImpicitTimeout(driver, longTimeout);
+		
+		if (elements.size() == 0) {
+			System.out.println("Element not in DOM");
+			return true;
+			
+		} else if (elements.size() > 0 && !elements.get(0).isDisplayed()){
+			System.out.println("Element in DOM but not visible/displayed");
+			return true;
+		} else {
+			System.out.println("Element in DOM and visible");
+			return false;
+		}
+	}
+	
+	public boolean isElementUndisplayed(WebDriver driver, String locator, String... values) {
+		overideImpicitTimeout(driver, shortTimeout);
+		List<WebElement> elements = getListWebElement(driver, getDynamicLocator(locator, values));
+		overideImpicitTimeout(driver, longTimeout);
+		
+		if (elements.size() == 0) {
+			System.out.println("Element not in DOM");
+			return true;
+			
+		} else if (elements.size() > 0 && !elements.get(0).isDisplayed()){
+			System.out.println("Element in DOM but not visible/displayed");
+			return true;
+		} else {
+			System.out.println("Element in DOM and visible");
+			return false;
+		}
+	}
+	
+	public void overideImpicitTimeout(WebDriver driver, long timeout) {
+		driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
+	}
+	
 	public boolean isElementEnabled(WebDriver driver, String locator) {
 		return getWebElement(driver, locator).isEnabled();
 	}
@@ -362,7 +413,7 @@ public class BasePage {
 
 	}
 
-	public void waitForElementInvisiable(WebDriver driver, String locator) {
+	public void waitForElementInvisible(WebDriver driver, String locator) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
 		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locator)));
 
@@ -393,6 +444,6 @@ public class BasePage {
 		return separator + folderName + separator;
 	}
 
-	private long shortTimeout = 5;
-	private long longTimeout = 30;
+	private long shortTimeout = GlobalConstants.SHORT_TIMEOUT;
+	private long longTimeout = GlobalConstants.LONG_TIMEOUT;
 }

@@ -4,18 +4,11 @@
 <parameter name="url" value="https://automationfc.wordpress.com/wp-admin"/>
 
 
-  <test name="Run on FIREFOX">
-  <parameter name="browser" value="firefox"/>
-    <classes>
-      <class name="com.wordpress.posts.Level_05_Login_Multiple_Browser"/>
-    </classes>
-  </test>
-  
   
   <test name="Run on CHROME">
   <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="com.wordpress.posts.Level_05_Login_Multiple_Browser"/>
+      <class name="com.wordpress.posts.Level_11_Element_Undisplay"/>
     </classes>
   </test>
   
