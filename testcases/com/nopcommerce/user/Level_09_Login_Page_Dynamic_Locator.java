@@ -13,8 +13,11 @@ import commons.BaseTest;
 import pageObject.nopCommerce.CustomerInforPageObject;
 import pageObject.nopCommerce.HomePageObject;
 import pageObject.nopCommerce.LoginPageObject;
+import pageObject.nopCommerce.NewsPageObject;
 import pageObject.nopCommerce.PageGeneratorManager;
 import pageObject.nopCommerce.RegisterPageObject;
+import pageObject.nopCommerce.ShoppingCartPageObject;
+import pageObject.nopCommerce.SiteMapPageObject;
 
 public class Level_09_Login_Page_Dynamic_Locator extends BaseTest {
 	WebDriver driver;
@@ -24,6 +27,10 @@ public class Level_09_Login_Page_Dynamic_Locator extends BaseTest {
 	LoginPageObject loginPage;
 	RegisterPageObject registerPage;
 	CustomerInforPageObject cutomerInfoPage;
+	SiteMapPageObject siteMapPage;
+	NewsPageObject newsPage;
+	ShoppingCartPageObject shoppingCartPage;
+	
 	//PageGeneratorManager pageGenerator;
 	
 
@@ -75,8 +82,8 @@ public class Level_09_Login_Page_Dynamic_Locator extends BaseTest {
 	
 	@Test
 	public void User_04_Switch_Page_Object() {
-		siteMapPage = customerInfoPage.openSiteMappage(driver);
-		newspage = siteMapPage.openNewsPage(driver);
+		siteMapPage = cutomerInfoPage.openSiteMapPage(driver);
+		newsPage = siteMapPage.openNewsPage(driver);
 		shoppingCartPage = newsPage.openShoppingCartPage(driver);
 	}
 	

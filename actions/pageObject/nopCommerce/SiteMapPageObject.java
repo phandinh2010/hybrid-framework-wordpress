@@ -13,7 +13,7 @@ public class SiteMapPageObject extends BasePage {
 		
 	}
 
-		public NewsPageObject openNewsPage() {
+		public NewsPageObject openNewsPage(WebDriver driver) {
 			waitForElementClickable(driver, SiteMapPageUI.NEWS_PAGE_LINK);
 			clickToElement(driver, SiteMapPageUI.NEWS_PAGE_LINK);
 			return PageGeneratorManager.getNewsPage(driver);
