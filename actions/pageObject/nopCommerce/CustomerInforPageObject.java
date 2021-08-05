@@ -34,6 +34,9 @@ public class CustomerInforPageObject extends BasePage {
 	clickToElement(driver, CustomerInforPageUI.SITE_MAP_LINK);
 		return PageGeneratorManager.getSiteMapPage(driver);
 	}
-	
+
+
+
+		
 
 }

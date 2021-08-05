@@ -53,41 +53,6 @@ public class HomePageObject  extends BasePage{
 	}
 
 	
-	public boolean areFilenameLoadedSuccess(String[] fileNames) {
-		boolean status = false;
-		for (String fileName : fileNames) {
-			if (isElementDisplayed(driver, HomePageUI.LOADED_FILE_NAME, fileName)) {
-				status = true;
-			} else {
-				return status;
-			}
-			
-		}
-		return status;
-	}
-
-	public void clickToStartUploadButton() {
-		//int uploadButtonSize = getElementNumber(driver, HomePageUI.START_UPLOAD_BUTTON);
-
-		List<WebElement> uploadButtons = getListWebElement(driver, HomePageUI.START_UPLOAD_BUTTON);
-		for (WebElement uploadButton : uploadButtons) {
-			uploadButton.click();
-			sleepInSecond(2);
-		}
-		
-	}
-
-	public boolean areFileUploadedSuccess(String[] fileNames) {
-	boolean status = false;
-	for (String fileName : fileNames) {
-		if (isElementDisplayed(driver, HomePageUI.UPLOADED_FILE_NAME, fileName)) {
-			status = true;
-		} else {
-			return status;
-		}
-		
-	}
-	return status;
-	}
+	
 	
 }

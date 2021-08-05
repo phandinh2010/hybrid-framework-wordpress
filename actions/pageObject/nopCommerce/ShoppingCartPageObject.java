@@ -13,7 +13,7 @@ public class ShoppingCartPageObject extends BasePage {
 		
 	}
 
-		public AboutUsPageObject openAboutUsPage() {
+		public AboutUsPageObject openAboutUsPage(WebDriver driver) {
 			waitForElementClickable(driver, ShoppingCartPageUI.ABOUT_US_LINK);
 			clickToElement(driver, ShoppingCartPageUI.ABOUT_US_LINK);
 			return PageGeneratorManager.getAboutUsPage(driver);

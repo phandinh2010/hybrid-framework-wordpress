@@ -16,20 +16,21 @@ import org.testng.Reporter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
-	//Declare log
+	// Declare log
 	protected final Log log;
-	
-	//Constructor
+
+	// Constructor
 	protected BaseTest() {
 		log = LogFactory.getLog(getClass());
 	}
+
 	WebDriver driver;
 	private String projectLocation = System.getProperty("user.dir");
 	private String osName = System.getProperty("os.name");
 
-	protected WebDriver getBrowserDriver(String browserName) {
+	public WebDriver getBrowserDriver(String browserName) {
 		Browser browser = Browser.valueOf(browserName.toUpperCase());
-		
+
 		if (browser == Browser.FIREFOX) {
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
@@ -51,15 +52,67 @@ public class BaseTest {
 		} else {
 			throw new RuntimeException("Please input the browser name!");
 		}
-		
+
 		driver.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
 		return driver;
 	}
+
 	
-	
+	  public WebDriver getDriver() {
+		  return getDriver(); }
+	  
+	 protected void removeDriver() {
+		 
+		 try {
+				// Get ra tên của OS và convert qua chữ thường
+				String osName = System.getProperty("os.name").toLowerCase();
+				log.info("OS name = " + osName);
+
+				// Khai báo 1 biến command line để thực thi
+				String cmd = "";
+				if (driver != null) {
+					driver.quit();
+				}
+				
+				// Quit driver executable file in Task Manager
+				if (driver.toString().toLowerCase().contains("chrome")) {
+					if (osName.toLowerCase().contains("mac")) {
+						cmd = "pkill chromedriver";
+					} else if (osName.toLowerCase().contains("windows")) {
+						cmd = "taskkill /F /FI \"IMAGENAME eq chromedriver*\"";
+					}
+				} else if (driver.toString().toLowerCase().contains("internetexplorer")) {
+					if (osName.toLowerCase().contains("window")) {
+						cmd = "taskkill /F /FI \"IMAGENAME eq IEDriverServer*\"";
+					}
+				} else if (driver.toString().toLowerCase().contains("firefox")) {
+					if (osName.toLowerCase().contains("mac")) {
+						cmd = "pkill geckodriver";
+					} else if (osName.toLowerCase().contains("windows")) {
+						cmd = "taskkill /F /FI \"IMAGENAME eq geckodriver*\"";
+					}
+				} else if (driver.toString().toLowerCase().contains("edge")) {
+					if (osName.toLowerCase().contains("mac")) {
+						cmd = "pkill msedgedriver";
+					} else if (osName.toLowerCase().contains("windows")) {
+						cmd = "taskkill /F /FI \"IMAGENAME eq msedgedriver*\"";
+					}
+				}
+
+				Process process = Runtime.getRuntime().exec(cmd);
+				process.waitFor();
+
+				log.info("---------- QUIT BROWSER SUCCESS ----------");
+			} catch (Exception e) {
+				log.info(e.getMessage());
+			}
+		 driver.quit();
+		}
+	 
+
 	protected WebDriver getBrowserDriver(String browserName, String url) {
 		Browser browser = Browser.valueOf(browserName.toUpperCase());
-		
+
 		if (browser == Browser.FIREFOX) {
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
@@ -67,18 +120,18 @@ public class BaseTest {
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
 		} else if (browser == Browser.CHROME_HEADLESS) {
-		WebDriverManager.chromedriver().setup();
-		ChromeOptions chromeOpt = new ChromeOptions();
-		chromeOpt.addArguments("headless");
-		chromeOpt.addArguments("window-size=1920x1080");
-		driver = new ChromeDriver(chromeOpt);
-	} else if (browser == Browser.FIREFOX_HEADLESS) {
-		WebDriverManager.firefoxdriver().setup();
-		FirefoxOptions firefoxOpt = new FirefoxOptions();
-		firefoxOpt.addArguments("headless");
-		firefoxOpt.addArguments("window-size=1920x1080");
-		driver = new FirefoxDriver(firefoxOpt);
-	} else {
+			WebDriverManager.chromedriver().setup();
+			ChromeOptions chromeOpt = new ChromeOptions();
+			chromeOpt.addArguments("headless");
+			chromeOpt.addArguments("window-size=1920x1080");
+			driver = new ChromeDriver(chromeOpt);
+		} else if (browser == Browser.FIREFOX_HEADLESS) {
+			WebDriverManager.firefoxdriver().setup();
+			FirefoxOptions firefoxOpt = new FirefoxOptions();
+			firefoxOpt.addArguments("headless");
+			firefoxOpt.addArguments("window-size=1920x1080");
+			driver = new FirefoxDriver(firefoxOpt);
+		} else {
 			throw new RuntimeException("Please input the browser name!");
 		}
 
@@ -129,10 +182,15 @@ public class BaseTest {
 	private boolean isSolaris() {
 		return (osName.toLowerCase().indexOf("sunos") >= 0);
 	}
-	
+
 	private boolean checkTrue(boolean condition) {
 		boolean pass = true;
-		try {			
+		try {
+			if (condition == true) {
+				log.info(" -------------------------- PASSED -------------------------- ");
+			} else {
+				log.info(" -------------------------- FAILED -------------------------- ");
+			}
 			Assert.assertTrue(condition);
 		} catch (Throwable e) {
 			pass = false;
@@ -151,7 +209,12 @@ public class BaseTest {
 	private boolean checkFailed(boolean condition) {
 		boolean pass = true;
 		try {
-			
+			if (condition == false) {
+				log.info(" -------------------------- PASSED -------------------------- ");
+			} else {
+				log.info(" -------------------------- FAILED -------------------------- ");
+			}
+
 			Assert.assertFalse(condition);
 		} catch (Throwable e) {
 			pass = false;
@@ -168,9 +231,11 @@ public class BaseTest {
 	private boolean checkEquals(Object actual, Object expected) {
 		boolean pass = true;
 		try {
-			
+			Assert.assertEquals(actual, expected);
+			log.info(" -------------------------- PASSED -------------------------- ");
 		} catch (Throwable e) {
-			pass = false;			
+			pass = false;
+			log.info(" -------------------------- FAILED -------------------------- ");
 			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
 			Reporter.getCurrentTestResult().setThrowable(e);
 		}
@@ -180,7 +245,7 @@ public class BaseTest {
 	protected boolean verifyEquals(Object actual, Object expected) {
 		return checkEquals(actual, expected);
 	}
-	
+
 	public void sleepInSecond(long time) {
 		try {
 			Thread.sleep(time * 1000);

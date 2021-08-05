@@ -1,18 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <suite name="Wordpress - Admin" parallel="false">
 
-<listeners>
-	<listener class-name="commons.MethodListener" />
-</listeners>
+	<listeners>
+		<listener class-name="commons.MethodListener" />
+		<listener class-name="reportConfig.AllureTestListener" />
+		<listener class-name="reportConfig.ExtentReportListener" />
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+	</listeners>
 
-<parameter name="url" value="https://automationfc.wordpress.com/wp-admin"/>
-  
-  <test name="Run on CHROME">
-  <parameter name="browser" value="chrome"/>
-    <classes>
-      <class name="com.wordpress.posts.Level_12_Login_Assert_Verify"/>
-    </classes>
-  </test>
-  
-   
+	<parameter name="url" value="https://automationfc.wordpress.com/wp-admin" />
+	<test name="Run on CHROME">
+		<parameter name="browser" value="chrome" />
+
+
+		<classes>
+			<class name="com.wordpress.posts.Common_01_Register" />
+			<class name="com.wordpress.posts.Level_15_Share_State" />
+		</classes>
+	</test>
+
+
 </suite>

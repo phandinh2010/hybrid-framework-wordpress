@@ -1,13 +1,14 @@
 package commons;
 
-import java.io.File;
-import java.nio.file.FileSystems;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -15,12 +16,15 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.testng.Reporter;
-
-import pageUIs.jQuery.HomePageUI;
 
 public class BasePage {
+
+	protected final Log log;
+
+	// Constructor
+	protected BasePage() {
+		log = LogFactory.getLog(getClass());
+	}
 
 	public static BasePage getBasePage() {
 		return new BasePage();
@@ -55,8 +59,12 @@ public class BasePage {
 	}
 
 	public void waitForAlertPresence(WebDriver driver) {
-		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
-		explicitWait.until(ExpectedConditions.alertIsPresent());
+		try {
+			WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
+			explicitWait.until(ExpectedConditions.alertIsPresent());
+		} catch (Exception e) {
+			log.debug(e.getMessage());
+		}
 	}
 
 	public void acceptAlert(WebDriver driver) {
@@ -92,11 +100,19 @@ public class BasePage {
 	}
 
 	public void clickToElement(WebDriver driver, String locator) {
-		getWebElement(driver, locator).click();
+		try {
+			getWebElement(driver, locator).click();
+		} catch (Exception e) {
+			log.debug("Element is not clickable: " + e.getMessage());
+		}
 	}
 
 	public void clickToElement(WebDriver driver, String locator, String... values) {
-		getWebElement(driver, getDynamicLocator(locator, values)).click();
+		try {
+			getWebElement(driver, getDynamicLocator(locator, values)).click();
+		} catch (Exception e) {
+			log.debug("Element is not clickable: " + e.getMessage());
+		}
 	}
 
 	private void clickToElement(WebElement element) {
@@ -199,7 +215,12 @@ public class BasePage {
 	}
 
 	public boolean isElementDisplayed(WebDriver driver, String locator) {
-		return getWebElement(driver, locator).isDisplayed();
+		try {
+			return getWebElement(driver, locator).isDisplayed();
+		} catch (Exception e) {
+			log.debug("Element is not displayed with error: " + e.getMessage());
+			return false;
+		}
 	}
 
 	public boolean isControlDisplayed(WebDriver driver, String locator) {
@@ -213,19 +234,24 @@ public class BasePage {
 	}
 
 	public boolean isElementDisplayed(WebDriver driver, String locator, String... values) {
-		return getWebElement(driver, getDynamicLocator(locator, values)).isDisplayed();
+		try {
+			return getWebElement(driver, getDynamicLocator(locator, values)).isDisplayed();
+		} catch (Exception e) {
+			log.debug("Element is not displayed with error: " + e.getMessage());
+			return false;
+		}
 	}
 
 	public boolean isElementUndisplayed(WebDriver driver, String locator) {
 		overideImpicitTimeout(driver, shortTimeout);
 		List<WebElement> elements = getListWebElement(driver, locator);
 		overideImpicitTimeout(driver, longTimeout);
-		
+
 		if (elements.size() == 0) {
 			System.out.println("Element not in DOM");
 			return true;
-			
-		} else if (elements.size() > 0 && !elements.get(0).isDisplayed()){
+
+		} else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
 			System.out.println("Element in DOM but not visible/displayed");
 			return true;
 		} else {
@@ -233,17 +259,17 @@ public class BasePage {
 			return false;
 		}
 	}
-	
+
 	public boolean isElementUndisplayed(WebDriver driver, String locator, String... values) {
 		overideImpicitTimeout(driver, shortTimeout);
 		List<WebElement> elements = getListWebElement(driver, getDynamicLocator(locator, values));
 		overideImpicitTimeout(driver, longTimeout);
-		
+
 		if (elements.size() == 0) {
 			System.out.println("Element not in DOM");
 			return true;
-			
-		} else if (elements.size() > 0 && !elements.get(0).isDisplayed()){
+
+		} else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
 			System.out.println("Element in DOM but not visible/displayed");
 			return true;
 		} else {
@@ -251,11 +277,11 @@ public class BasePage {
 			return false;
 		}
 	}
-	
+
 	public void overideImpicitTimeout(WebDriver driver, long timeout) {
 		driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
 	}
-	
+
 	public boolean isElementEnabled(WebDriver driver, String locator) {
 		return getWebElement(driver, locator).isEnabled();
 	}
@@ -265,7 +291,11 @@ public class BasePage {
 	}
 
 	public void switchToFrame(WebDriver driver, String locator) {
-		driver.switchTo().frame(getWebElement(driver, locator));
+		try {
+			driver.switchTo().frame(getWebElement(driver, locator));
+		} catch (Exception e) {
+			log.debug("No frame with: " + e.getMessage());
+		}
 	}
 
 	public void switchToDefaulContent(WebDriver driver) {
@@ -398,8 +428,12 @@ public class BasePage {
 	}
 
 	public void waitForElementVisible(WebDriver driver, String locator) {
-		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
-		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
+		try {
+			WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
+			explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
+		} catch (Exception e) {
+			log.debug("Wait for element visible with error: " + e.getMessage());
+		}
 
 	}
 
@@ -422,8 +456,12 @@ public class BasePage {
 	}
 
 	public void waitForElementClickable(WebDriver driver, String locator) {
-		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
-		explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
+		try {
+			WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
+			explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
+		} catch (Exception e) {
+			log.debug("Wait for element clickable with error: " + e.getMessage());
+		}
 	}
 
 	public void waitForElementClickable(WebDriver driver, String locator, String... values) {
@@ -431,14 +469,30 @@ public class BasePage {
 		explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(getDynamicLocator(locator, values))));
 	}
 
-	public void uploadMultipleFiles(WebDriver driver, String... fileNames) {
-		String filePath = System.getProperty("user.dir") + getDirectorySlash("uploadFiles");
+	public void uploadOneFile(WebDriver driver, String locator, String FileName) {
+		getWebElement(driver, locator).sendKeys(FileName);
+	}
+
+	public void uploadMultipleFiles(WebDriver driver, String locator, String... fileNames) {
+
+		// System.getProperty("user.dir"): get ra đường dẫn local chưa project trên máy
+		// D:\AutoTest_DaoMinhDam\03.Hyprid Framework
+		String osName = System.getProperty("os.name");
+		String projectLocation = System.getProperty("user.dir");
+		String filePath = null;
+		if (osName.contains("win")) {
+			filePath = projectLocation + "\\uploadFiles\\";
+		} else {
+			filePath = projectLocation + "//uploadFiles//";
+		}
+
 		String fullFileName = "";
 		for (String file : fileNames) {
 			fullFileName = fullFileName + filePath + file + "\n";
 		}
 		fullFileName = fullFileName.trim();
-		sendkeyToElement(driver, HomePageUI.UPLOAD_FILE_TYPE, fullFileName);
+		getWebElement(driver, locator).sendKeys(fullFileName);
+		// sendkeyToElement(driver, UploadPageUI.UPLOAD_FILE_TYPE, fullFileName);
 	}
 
 	public String getDirectorySlash(String folderName) {

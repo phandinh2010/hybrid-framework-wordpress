@@ -10,17 +10,19 @@ import org.testng.annotations.Test;
 import commons.BaseTest;
 import pageObject.jQuery.HomePageObject;
 import pageObject.jQuery.PageGeneratorManager;
+import pageObject.jQuery.UploadPageObject;
+import pageUIs.jQuery.UploadPageUI;
 
 public class Level_10_Upload_File extends BaseTest {
 	WebDriver driver;
+	UploadPageObject uploadPage;
 		
 
 	@Parameters({"browser", "url"})
 	@BeforeClass
 	public void beforeClass(String browserName, String urlValue) {
-		driver = getBrowserDriver(browserName, urlValue);		
-			
-		homePage = PageGeneratorManager.getHomepage(driver);
+		driver = getBrowserDriver(browserName, urlValue);			
+		uploadPage = PageGeneratorManager.getUploadPageObject(driver);
 	}
 	
 		
@@ -28,31 +30,27 @@ public class Level_10_Upload_File extends BaseTest {
 	public void Upload_01_One_File_Per_Time() {
 		String [] fileNames = {"onhousing.png"};
 		
-		homePage.uploadMultipleFiles(driver, fileNames);
-		Assert.assertTrue(homePage.areFilenameLoadedSuccess(fileNames));
-		homePage.clickToStartUploadButton();
-		
-		Assert.assertTrue(homePage.areFileUploadedSuccess(fileNames));
+		uploadPage.uploadFiles(fileNames);
+		Assert.assertTrue(uploadPage.areFilenameLoadedSuccess(fileNames));
+		uploadPage.clickToStartUploadButton();		
+		Assert.assertTrue(uploadPage.areFileUploadedSuccess(fileNames));
 	}
 	
 	@Test
 	public void Upload_02_Multiple_File_Per_Time() {
-		homePage.refreshPage(driver);
-		String[] fileNames = {"onhousing.png", "pisces_rebrand_hero-vflpmmi4e.png", "User-Group-icon.png"};
+		uploadPage.refreshPage(driver);
+		String[] fileNames = {"onhousing.png", "pisces_rebrand_hero-vflpmmi4e.png", "User-Group-icon.png"};		
+		uploadPage.uploadFiles(fileNames);
+		Assert.assertTrue(uploadPage.areFilenameLoadedSuccess(fileNames));
+		uploadPage.clickToStartUploadButton();
 		
-		homePage.uploadMultipleFiles(driver, fileNames);
-		Assert.assertTrue(homePage.areFilenameLoadedSuccess(fileNames));
-		homePage.clickToStartUploadButton();
-		
-		Assert.assertTrue(homePage.areFileUploadedSuccess(fileNames));
+		Assert.assertTrue(uploadPage.areFileUploadedSuccess(fileNames));
 	}
 	
 	
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
-	}
-	
- private HomePageObject homePage;
+	} 
 	
 }

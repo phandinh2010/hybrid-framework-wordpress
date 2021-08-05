@@ -1,0 +1,48 @@
+[INFO ] [2021-07-31 00:33:25,266] Login - Step 01: Click to 'Screen option' button
+[INFO ] [2021-07-31 22:19:32,182] Login - Step 01: Click to 'Screen option' button
+[INFO ] [2021-07-31 22:24:29,107] Login - Step 01: Click to 'Screen option' button
+[INFO ] [2021-07-31 22:41:52,356] Login - Step 01: Click to 'Screen option' button
+[INFO ] [2021-07-31 22:41:54,104] Login - Step 02: Verify Activity Checkbox displayed
+[INFO ] [2021-07-31 22:55:12,593] Login - Step 01: Click to 'Screen option' button
+[INFO ] [2021-07-31 22:55:13,743] Login - Step 02: Verify Activity Checkbox displayed
+[INFO ] [2021-07-31 22:55:13,822] Login - Step 03: Click to 'Screen option' button
+[INFO ] [2021-07-31 23:01:47,004] Login - Step 01: Click to 'Screen option' button
+[INFO ] [2021-07-31 23:01:48,217] Login - Step 02: Verify Activity Checkbox displayed
+[INFO ] [2021-07-31 23:01:48,304] Login - Step 03: Click to 'Screen option' button
+[INFO ] [2021-07-31 23:03:22,595] Login - Step 01: Click to 'Screen option' button
+[INFO ] [2021-07-31 23:03:23,833] Login - Step 02: Verify Activity Checkbox displayed
+[INFO ] [2021-07-31 23:03:23,911] Login - Step 03: Click to 'Screen option' button
+[INFO ] [2021-07-31 23:07:46,795] Login - Step 01: Click to 'Screen option' button
+[INFO ] [2021-07-31 23:07:48,034] Login - Step 02: Verify Activity Checkbox displayed
+[INFO ] [2021-07-31 23:07:48,113] Login - Step 03: Click to 'Screen option' button
+[INFO ] [2021-07-31 23:22:04,746] Login - Step 01: Click to 'Screen option' button
+[INFO ] [2021-07-31 23:22:08,928] Login - Step 02: Verify Activity Checkbox displayed
+[INFO ] [2021-07-31 23:22:08,968] Login - Step 03: Click to 'Screen option' button
+[INFO ] [2021-07-31 23:37:28,714] Login - Step 01: Click to 'Screen option' button
+[INFO ] [2021-07-31 23:37:33,066] Login - Step 02: Verify Activity Checkbox displayed
+[INFO ] [2021-07-31 23:37:33,124] Login - Step 03: Click to 'Screen option' button
+[INFO ] [2021-07-31 23:46:00,074] Login - Step 01: Click to 'Screen option' button
+[INFO ] [2021-07-31 23:46:04,732] Login - Step 02: Verify Activity Checkbox displayed
+[INFO ] [2021-07-31 23:46:04,778]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-07-31 23:46:04,781] Login - Step 03: Click to 'Screen option' button
+[INFO ] [2021-07-31 23:46:08,020]  -------------------------- FAILED -------------------------- 
+[INFO ] [2021-07-31 23:51:57,850] Login - Step 01: Click to 'Screen option' button
+[INFO ] [2021-07-31 23:52:02,634] Login - Step 02: Verify Activity Checkbox displayed
+[INFO ] [2021-07-31 23:52:02,716]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-07-31 23:52:02,719] Login - Step 03: Click to 'Screen option' button
+[INFO ] [2021-07-31 23:52:05,995]  -------------------------- FAILED -------------------------- 
+[INFO ] [2021-08-01 00:13:25,536] Login - Step 01: Click to 'Screen option' button
+[INFO ] [2021-08-01 00:13:29,867] Login - Step 02: Verify Activity Checkbox displayed
+[INFO ] [2021-08-01 00:13:29,945]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-08-01 00:13:29,946] Login - Step 03: Click to 'Screen option' button
+[INFO ] [2021-08-01 00:13:33,136]  -------------------------- FAILED -------------------------- 
+[INFO ] [2021-08-01 00:16:04,534] Login - Step 01: Click to 'Screen option' button
+[INFO ] [2021-08-01 00:16:09,139] Login - Step 02: Verify Activity Checkbox displayed
+[INFO ] [2021-08-01 00:16:09,407]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-08-01 00:16:09,408] Login - Step 03: Click to 'Screen option' button
+[INFO ] [2021-08-01 00:16:12,583]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-08-02 00:24:04,967] Login - Step 01: Click to 'Screen option' button
+[INFO ] [2021-08-02 00:24:09,855] Login - Step 02: Verify Activity Checkbox displayed
+[INFO ] [2021-08-02 00:24:09,954]  -------------------------- PASSED -------------------------- 
+[INFO ] [2021-08-02 00:24:09,956] Login - Step 03: Click to 'Screen option' button
+[INFO ] [2021-08-02 00:24:13,191]  -------------------------- PASSED -------------------------- 
