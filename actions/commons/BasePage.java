@@ -22,7 +22,7 @@ public class BasePage {
 	protected final Log log;
 
 	// Constructor
-	protected BasePage() {
+	public BasePage() {
 		log = LogFactory.getLog(getClass());
 	}
 

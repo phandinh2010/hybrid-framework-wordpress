@@ -69,9 +69,7 @@ public class Level_11_Element_Undisplay extends BaseTest {
 		boolean postSearch = dashboardPage.isPostSearchTextboxUndisplay();
 		Assert.assertTrue(postSearch);
 		
-	}
-	
-	
+	}	
 
 	@AfterClass
 	public void afterClass() {

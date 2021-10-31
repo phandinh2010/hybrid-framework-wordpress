@@ -1,0 +1,21 @@
+[ {
+  "uid" : "c7eb0fc7baaf196e",
+  "name" : "Login_01_Element_Displayed",
+  "time" : {
+    "start" : 1628524404484,
+    "stop" : 1628524415538,
+    "duration" : 11054
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "2d33e8254ea29303",
+  "name" : "beforeClass",
+  "time" : {
+    "start" : 1628524372154,
+    "stop" : 1628524372157,
+    "duration" : 3
+  },
+  "status" : "broken",
+  "severity" : "normal"
+} ]

@@ -1,0 +1,56 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "name" : "timeline",
+  "children" : [ {
+    "name" : "DESKTOP-SSAH8PS",
+    "children" : [ {
+      "name" : "6968@DESKTOP-SSAH8PS.main(1)",
+      "children" : [ {
+        "name" : "Login_01_Element_Displayed",
+        "uid" : "95c7b59aa1b31513",
+        "parentUid" : "78e47ccfad5c70f817d86429a12235db",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1628524372302,
+          "stop" : 1628524372304,
+          "duration" : 2
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome", "https://automationfc.wordpress.com/wp-admin" ]
+      }, {
+        "name" : "beforeClass",
+        "uid" : "2d33e8254ea29303",
+        "parentUid" : "78e47ccfad5c70f817d86429a12235db",
+        "status" : "broken",
+        "time" : {
+          "start" : 1628524372154,
+          "stop" : 1628524372157,
+          "duration" : 3
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome", "https://automationfc.wordpress.com/wp-admin" ]
+      } ],
+      "uid" : "78e47ccfad5c70f817d86429a12235db"
+    }, {
+      "name" : "3448@DESKTOP-SSAH8PS.main(1)",
+      "children" : [ {
+        "name" : "Login_01_Element_Displayed",
+        "uid" : "c7eb0fc7baaf196e",
+        "parentUid" : "84ce620b74f36011748269c4684cc267",
+        "status" : "passed",
+        "time" : {
+          "start" : 1628524404484,
+          "stop" : 1628524415538,
+          "duration" : 11054
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome", "https://automationfc.wordpress.com/wp-admin" ]
+      } ],
+      "uid" : "84ce620b74f36011748269c4684cc267"
+    } ],
+    "uid" : "7aebfb4b64c5ff1d8e106cc2aa5fbfbc"
+  } ]
+}

@@ -1,0 +1,41 @@
+{
+  "deb36d400f4dc8254e343a417d334871" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "c7eb0fc7baaf196e",
+      "status" : "passed",
+      "time" : {
+        "start" : 1628524404484,
+        "stop" : 1628524415538,
+        "duration" : 11054
+      }
+    } ]
+  },
+  "21f04cbb067bd2c64691dd9e57d39be7" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "2d33e8254ea29303",
+      "status" : "broken",
+      "statusDetails" : "no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome=92.0.4515.107)\nBuild info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:25:53'\nSystem info: host: 'DESKTOP-SSAH8PS', ip: '192.168.1.8', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '16.0.1'\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 92.0.4515.107, chrome: {chromedriverVersion: 92.0.4515.107 (87a818b10553..., userDataDir: C:\\Users\\X1CARB~1\\AppData\\L...}, goog:chromeOptions: {debuggerAddress: localhost:63275}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}\nSession ID: fbf2984c4c8d56bb6031dc54967b5785\n*** Element info: {Using=xpath, value=//input[@id='usernameOrEmail']}",
+      "time" : {
+        "start" : 1628524372154,
+        "stop" : 1628524372157,
+        "duration" : 3
+      }
+    } ]
+  }
+}

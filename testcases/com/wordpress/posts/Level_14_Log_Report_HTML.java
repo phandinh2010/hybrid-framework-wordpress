@@ -9,8 +9,12 @@ import org.testng.annotations.Test;
 
 import allure.results.AllureTestListener;
 import commons.BaseTest;
+import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import pageObjects.wordpress.DashboardPageObject;
 import pageObjects.wordpress.LoginPageObject;
 import pageObjects.wordpress.PageGeneratorManager;
@@ -21,7 +25,7 @@ public class Level_14_Log_Report_HTML extends BaseTest {
 	DashboardPageObject dashboardPage;
 	
 	//@Listeners({ AllureTestListener.class })
-	@Epic("Regression Tests")
+	@Epic("User Module")
 	@Feature("Login Tests")
 
 	
@@ -42,6 +46,10 @@ public class Level_14_Log_Report_HTML extends BaseTest {
 		dashboardPage =  PageGeneratorManager.getDashboardPage(driver);
 	}
 
+	
+	@Description("Register to system and verify registered successs")
+	@Story("")
+	@Severity(SeverityLevel.NORMAL)	//
 	@Test
 	public void Login_01_Element_Displayed() {
 		log.info("Login - Step 01: Click to 'Screen option' button");

@@ -59,7 +59,8 @@ public class BaseTest {
 
 	
 	  public WebDriver getDriver() {
-		  return getDriver(); }
+		  return driver;
+		  }
 	  
 	 protected void removeDriver() {
 		 

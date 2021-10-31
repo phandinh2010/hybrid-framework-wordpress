@@ -1,0 +1,43 @@
+{
+  "uid" : "b1a8273437954620fa374b796ffaacdd",
+  "name" : "behaviors",
+  "children" : [ {
+    "name" : "User Module",
+    "children" : [ {
+      "name" : "Login Tests",
+      "children" : [ {
+        "name" : "beforeClass",
+        "uid" : "2d33e8254ea29303",
+        "parentUid" : "4fa432da5583f1be9b6acb5f7a8851cc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1628524372154,
+          "stop" : 1628524372157,
+          "duration" : 3
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome", "https://automationfc.wordpress.com/wp-admin" ]
+      } ],
+      "uid" : "4fa432da5583f1be9b6acb5f7a8851cc"
+    } ],
+    "uid" : "ffd9d7258282c165741469f862a5d461"
+  }, {
+    "name" : "",
+    "children" : [ {
+      "name" : "Login_01_Element_Displayed",
+      "uid" : "c7eb0fc7baaf196e",
+      "parentUid" : "cc481a6b16e017ad87bb089a75f26fac",
+      "status" : "passed",
+      "time" : {
+        "start" : 1628524404484,
+        "stop" : 1628524415538,
+        "duration" : 11054
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome", "https://automationfc.wordpress.com/wp-admin" ]
+    } ],
+    "uid" : "cc481a6b16e017ad87bb089a75f26fac"
+  } ]
+}
