@@ -5,9 +5,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pageObject.nopCommerce.PageGeneratorManager;
+import pageObject.nopCommerce.SiteMapPageObject;
+import pageUIs.nopCommerce.CustomerInforPageUI;
+
 
 public class BasePage {
 	private long longTimeout = 30;
+	
+	
 	
 	public static BasePage getBasePage() {
 		return new BasePage();

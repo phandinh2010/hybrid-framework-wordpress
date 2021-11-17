@@ -29,14 +29,11 @@ public class CustomerInforPageObject extends BasePage {
 	}
 
 
-	public SiteMapPageObject openSiteMapPage() {
-	waitForElementClickable(driver, CustomerInforPageUI.SITE_MAP_LINK);
-	clickToElement(driver, CustomerInforPageUI.SITE_MAP_LINK);
-		return PageGeneratorManager.getSiteMapPage(driver);
-	}
+	
 
-
-
-		
+public boolean isCustomerInforPageDisplay() {
+	waitForElementVisible(driver, CustomerInforPageUI.CUSTOMER_INFOR_HEADER);
+	return isElementDisplayed(driver, CustomerInforPageUI.CUSTOMER_INFOR_HEADER);
+}		
 
 }

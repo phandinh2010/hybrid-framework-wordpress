@@ -28,10 +28,8 @@ public class Level_08_Login_Page_Swich_Page extends BaseTest {
 	@Parameters({"browser", "url"})
 	@BeforeClass
 	public void beforeClass(String browserName, String urlValue) {
-		driver = getBrowserDriver(browserName, urlValue);		
-			
-		emailAddress = "testing" + getRandomNumber() + "@gmail.com";
-		
+		driver = getBrowserDriver(browserName, urlValue);			
+		emailAddress = "testing" + getRandomNumber() + "@gmail.com";		
 		homePage= PageGeneratorManager.getHomePage(driver);
 	}
 	
@@ -53,7 +51,7 @@ public class Level_08_Login_Page_Swich_Page extends BaseTest {
 
 	@Test
 	public void User_02_Login_To_System() {
-		loginPage = homePage.clickToLoginLink();
+		loginPage = homePage.clickToLoginLink();		
 		
 		//loginPage = new LoginPageObject(driver);
 		loginPage.enterToEmailTextbox(emailAddress);
@@ -73,11 +71,15 @@ public class Level_08_Login_Page_Swich_Page extends BaseTest {
 	
 	@Test
 	public void User_04_Switch_Page_Object() {
-		siteMapPage = cutomerInfoPage.openSiteMapPage();
-		newsPage = siteMapPage.openNewsPage();
-		shoppingCartPage = newsPage.openShoppingCartPage();
-		aboutUsPage = shoppingCartPage.openAboutUsPage();
-		homePage = aboutUsPage.openHomePage();
+		siteMapPage = cutomerInfoPage.openSiteMapPage(driver);
+		newsPage = siteMapPage.openNewsPage(driver);
+		shoppingCartPage = newsPage.openShoppingCartPage(driver);
+		aboutUsPage = shoppingCartPage.openAboutUsPage(driver);
+		homePage = aboutUsPage.openHomePage(driver);
+	}
+	
+	@Test
+	public void User_04_Switch_Role() {
 	}
 	
 	

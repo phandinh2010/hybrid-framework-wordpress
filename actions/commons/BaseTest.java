@@ -14,6 +14,9 @@ import org.testng.Assert;
 import org.testng.Reporter;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import pageObject.nopCommerce.PageGeneratorManager;
+import pageObject.nopCommerce.SiteMapPageObject;
+import pageUIs.nopCommerce.CustomerInforPageUI;
 
 public class BaseTest {
 	// Declare log
@@ -28,6 +31,7 @@ public class BaseTest {
 	private String projectLocation = System.getProperty("user.dir");
 	private String osName = System.getProperty("os.name");
 
+	
 	public WebDriver getBrowserDriver(String browserName) {
 		Browser browser = Browser.valueOf(browserName.toUpperCase());
 

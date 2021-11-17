@@ -14,11 +14,7 @@ public class AboutUsPageObject extends BasePage {
 		
 	}
 
-		public HomePageObject openHomePage() {
-			waitForElementClickable(driver, AboutUsPageUI.HOME_PAGE_LINK);
-			clickToElement(driver, AboutUsPageUI.HOME_PAGE_LINK);
-			return PageGeneratorManager.getHomePage(driver);
-		}
+	
 
 
 

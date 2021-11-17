@@ -13,12 +13,7 @@ public class NewsPageObject extends BasePage {
 		
 	}
 
-		public ShoppingCartPageObject openShoppingCartPage(WebDriver driver) {
-			waitForElementClickable(driver, NewsPageUI.SHOPPING_CART_LINK);
-			clickToElement(driver, NewsPageUI.SHOPPING_CART_LINK);			
-			return PageGeneratorManager.getShoppingCartPage(driver);
-		}
-
+		
 
 	
 

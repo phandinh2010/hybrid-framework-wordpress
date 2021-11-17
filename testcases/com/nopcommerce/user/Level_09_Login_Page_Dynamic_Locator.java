@@ -82,9 +82,9 @@ public class Level_09_Login_Page_Dynamic_Locator extends BaseTest {
 	
 	@Test
 	public void User_04_Switch_Page_Object() {
-		siteMapPage = cutomerInfoPage.openSiteMapPage(driver);
-		newsPage = siteMapPage.openNewsPage(driver);
-		shoppingCartPage = newsPage.openShoppingCartPage(driver);
+		siteMapPage = cutomerInfoPage.openSiteMapPage();
+		newsPage = siteMapPage.openNewsPage();
+		shoppingCartPage = newsPage.openShoppingCartPage();
 	}
 	
 	
