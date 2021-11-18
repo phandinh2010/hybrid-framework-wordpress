@@ -97,17 +97,35 @@ public class BasePage {
 	public void sendkeyToAlert(WebDriver driver, String value) {
 		driver.switchTo().alert().sendKeys(value);
 	}
-
-	public By getByXpath(String locator) {
-		return By.xpath(locator);
+//
+//	public By getByXpath(String locator) {
+//		return By.xpath(locator);
+//	}
+	
+	//locatoType: id=/ css=/   xpath=/ name=/ class=
+	private By getByLocator(String locatorType) {
+		By by = null;
+		if (locatorType.startsWith("id=")) {
+			by = By.id(locatorType.substring(3));
+		} else if (locatorType.startsWith("class=")) {
+			by = By.className(locatorType.substring(6));
+		} else if (locatorType.startsWith("name=")) {
+			by = By.name(locatorType.substring(5));
+		}else if (locatorType.startsWith("css=")) {
+			by = By.cssSelector(locatorType.substring(4));
+		}else if (locatorType.startsWith("xpath=")) {
+			by = By.xpath(locatorType.substring(6));
+		}
+		return by;
 	}
+	
 
 	public WebElement getWebElement(WebDriver driver, String locator) {
-		return driver.findElement(getByXpath(locator));
+		return driver.findElement(getByLocator(locator));
 	}
 
 	public List<WebElement> getListWebElement(WebDriver driver, String locator) {
-		return driver.findElements(getByXpath(locator));
+		return driver.findElements(getByLocator(locator));
 	}
 
 	public String getDynamicLocator(String locator, String... values) {
@@ -166,7 +184,7 @@ public class BasePage {
 		sleepInSecond(1);
 
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
-		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXpath(childItemLocator)));
+		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByLocator(childItemLocator)));
 
 		List<WebElement> allItems = getListWebElement(driver, childItemLocator);
 
@@ -445,7 +463,7 @@ public class BasePage {
 	public void waitForElementVisible(WebDriver driver, String locator) {
 		try {
 			WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
-			explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
+			explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByLocator(locator)));
 		} catch (Exception e) {
 			log.debug("Wait for element visible with error: " + e.getMessage());
 		}
@@ -454,26 +472,26 @@ public class BasePage {
 
 	public void waitForElementVisible(WebDriver driver, String locator, String... values) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
-		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(getDynamicLocator(locator, values))));
+		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByLocator(getDynamicLocator(locator, values))));
 
 	}
 
 	public void waitForListElementVisiable(WebDriver driver, String locator) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
-		explicitWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByXpath(locator)));
+		explicitWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByLocator(locator)));
 
 	}
 
 	public void waitForElementInvisible(WebDriver driver, String locator) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
-		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locator)));
+		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(locator)));
 
 	}
 
 	public void waitForElementClickable(WebDriver driver, String locator) {
 		try {
 			WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
-			explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
+			explicitWait.until(ExpectedConditions.elementToBeClickable(getByLocator(locator)));
 		} catch (Exception e) {
 			log.debug("Wait for element clickable with error: " + e.getMessage());
 		}
@@ -481,7 +499,7 @@ public class BasePage {
 
 	public void waitForElementClickable(WebDriver driver, String locator, String... values) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
-		explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(getDynamicLocator(locator, values))));
+		explicitWait.until(ExpectedConditions.elementToBeClickable(getByLocator(getDynamicLocator(locator, values))));
 	}
 
 	public void uploadOneFile(WebDriver driver, String locator, String FileName) {
